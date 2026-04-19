@@ -1,0 +1,41 @@
+{
+    "screens": [
+        {
+            "name_ar": "الطلاب",
+            "name_en": "Student",
+            "order": 1,
+            "parent_screen": "School",
+            "screen_type": "CRUD",
+            "router": "/school/student",
+            "api_endpoint": "/api/school/student/",
+            "model_name": "Student",
+            "viewset_class": "StudentMVS",
+            "fields": [
+                {
+                    "name": "id",
+                    "label": "المعرف",
+                    "type": "AutoField",
+                    "group": "البيانات الأساسية",
+                    "required": true,
+                    "is_relation": false
+                },
+                {
+                    "name": "name",
+                    "label": "الاسم",
+                    "type": "CharField",
+                    "group": "البيانات الأساسية",
+                    "required": true,
+                    "is_relation": false
+                },
+                {
+                    "name": "age",
+                    "label": "العمر",
+                    "type": "IntegerField",
+                    "group": "البيانات الأساسية",
+                    "required": true,
+                    "is_relation": false
+                }
+            ]
+        }
+    ]
+}

@@ -6,6 +6,7 @@ from .generators.project_urls_gen import update_project_urls
 from .generators.tests_gen import generate_tests
 from .generators.base_serializer_gen import generate_base_serializer
 from .generators.readme_gen import generate_app_readme
+from .generators.frontend_meta_gen import generate_frontend_meta
 import os
 
 def generate_serializers_apis_and_urls_safe(app_names, project_settings_module='my_project.settings'):
@@ -26,6 +27,11 @@ def generate_serializers_apis_and_urls_safe(app_names, project_settings_module='
         
         # تنسيق كود التطبيق
         format_code(app_name)
+
+    # توليد ملف الإعدادات الموحد للفرونت إند
+    project_root = os.getcwd()
+    models_dict = {app: load_models_from_app(app) for app in app_names}
+    generate_frontend_meta(app_names, models_dict, project_root)
 
      # تحديث urls.py الرئيسي بجانب settings
     project_dir = os.path.dirname(project_settings_module.replace('.', os.sep) + '.py')
