@@ -26,11 +26,14 @@ def update_project_urls(app_names, project_urls_path):
     auto_content += "    from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView\n"
     auto_content += "except ImportError:\n"
     auto_content += "    pass\n\n"
+    auto_content += "from django_auto_api_gen.views import SystemConfigView\n\n"
     auto_content += "urlpatterns += [\n"
     auto_content += "    # Swagger / OpenAPI Documentation\n"
     auto_content += "    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),\n"
     auto_content += "    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),\n"
     auto_content += "    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),\n"
+    auto_content += "    # System Configuration API\n"
+    auto_content += "    path('api/system-config/', SystemConfigView.as_view(), name='system-config'),\n\n"
     
     # تطبيقات المشروع
     for app_name in app_names:
