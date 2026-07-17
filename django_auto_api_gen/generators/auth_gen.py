@@ -9,7 +9,7 @@ def setup_authentication(app_name='users'):
     os.makedirs(app_name, exist_ok=True)
     
     # --- بناء الهيكل الشجري للمجلدات ---
-    sub_packages = ['models', 'serializers', 'api']
+    sub_packages = ['models', 'serializers', 'apis']
     for sub in sub_packages:
         path = os.path.join(app_name, sub)
         os.makedirs(path, exist_ok=True)
@@ -64,7 +64,7 @@ def setup_authentication(app_name='users'):
             """))
 
     # --- API Views ---
-    api_file = os.path.join(app_name, 'api', 'AuthViews.py')
+    api_file = os.path.join(app_name, 'apis', 'AuthViews.py')
     if not os.path.exists(api_file):
         with open(api_file, 'w', encoding='utf-8') as f:
             f.write(textwrap.dedent(f"""\
@@ -102,7 +102,7 @@ def setup_authentication(app_name='users'):
                     TokenObtainPairView,
                     TokenRefreshView,
                 )
-                from .api.AuthViews import RegisterAPIView, ProfileAPIView
+                from .apis.AuthViews import RegisterAPIView, ProfileAPIView
 
                 urlpatterns = [
                     # تسجيل حساب جديد
