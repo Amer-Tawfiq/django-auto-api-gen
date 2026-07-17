@@ -16,14 +16,14 @@ def generate_serializers(app_name, app_models):
 
             # Check for relations (ForeignKey, ManyToMany, etc.)
             has_relations = any(field.is_relation for field in model._meta.get_fields())
-            depth_str = "\n        depth = 1" if has_relations else ""
+            depth_str = "\n                        depth = 1" if has_relations else ""
 
             # --- serializer ---
             serializer_file = os.path.join(serializers_dir, f"{model_name}.py")
             if not os.path.exists(serializer_file):
-                serializer_content = textwrap.dedent(f"""\
+                serializer_content =textwrap.dedent(f"""\
                     from rest_framework import serializers
-                    from .base import DynamicFieldsModelSerializer
+                    from core.serializers.base import DynamicFieldsModelSerializer
                     from ..models.{model_name} import {model_name}
 
                     class {model_name}Serializer(DynamicFieldsModelSerializer):

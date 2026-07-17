@@ -2,7 +2,7 @@ import os
 import textwrap
 
 def generate_apis(app_name, models):
-    api_dir = os.path.join(app_name, 'api')
+    api_dir = os.path.join(app_name, 'apis')
     os.makedirs(api_dir, exist_ok=True)
 
     init_file = os.path.join(api_dir, '__init__.py')
@@ -81,7 +81,7 @@ def generate_apis(app_name, models):
                 f.write(content)
             print(f"✅ Created api: {api_file}")
 
-        imports.append(f"from .api.{model_name} import {model_name}MVS")
+        imports.append(f"from .apis.{model_name} import {model_name}MVS")
         registrations.append(f"router.register('{model_name.lower()}', {model_name}MVS)")
 
     return imports, registrations

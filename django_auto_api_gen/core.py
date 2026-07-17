@@ -4,7 +4,6 @@ from .generators.apis_gen import generate_apis
 from .generators.urls_gen import update_urls
 from .generators.project_urls_gen import update_project_urls
 from .generators.tests_gen import generate_tests
-from .generators.base_serializer_gen import generate_base_serializer
 from .generators.readme_gen import generate_app_readme
 from .generators.frontend_meta_gen import generate_frontend_meta
 import os
@@ -18,7 +17,6 @@ def generate_serializers_apis_and_urls_safe(app_names, project_settings_module='
         if not models:
             continue
 
-        generate_base_serializer(app_name)
         generate_serializers(app_name, models)
         imports, registrations = generate_apis(app_name, models)
         update_urls(app_name, imports, registrations)
